@@ -1,13 +1,13 @@
-import {
-  Body,
-  Controller,
-  Post,
-  Get,
-  UseGuards,
-  Request,
-} from '@nestjs/common';
+import { Body, Controller, Post, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { GetUser } from './decorators/get-user.decorator';
+
+// Define the JWT payload structure
+export interface JwtPayload {
+  userId: string;
+  email: string;
+}
 
 @Controller('auth')
 export class AuthController {
@@ -25,8 +25,7 @@ export class AuthController {
 
   @Get('me')
   @UseGuards(JwtAuthGuard)
-  getProfile(@Request() req: any) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access
-    return req.user;
+  getProfile(@GetUser() user: JwtPayload) {
+    return user;
   }
 }
