@@ -1,15 +1,23 @@
-POST http://localhost:3000/auth/login
-Content-Type: application/json
-
-{
-  "email": "test@mail.com",
-  "password": "123456"
-}
-
+### Register New User
 POST http://localhost:3000/auth/register
 Content-Type: application/json
 
 {
-  "email": "test@mail.com",
+  "email": "test111@mail.com",
   "password": "123456"
 }
+
+###
+### Login (Get JWT Token)
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "test111@mail.com",
+  "password": "123456"
+}
+
+
+GET http://localhost:3000/auth/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODlhNjQwMS00OGFiLTRjZjYtODA1ZS04NjhjOTA5NGNkMzgiLCJlbWFpbCI6InRlc3QxMTFAbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc2ODc5MTEwNiwiZXhwIjoxNzY4ODc3NTA2fQ.0FQfr27Am6uqcNnl1WOTS40nShYpDW7-eajUu5aQhds

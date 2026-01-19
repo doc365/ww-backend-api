@@ -1,5 +1,13 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -16,10 +24,9 @@ export class AuthController {
   }
 
   @Get('me')
-  me() {
-    return {
-      message: 'JWT guard disabled',
-      note: 'Enable AuthGuard(jwt) later',
-    };
+  @UseGuards(JwtAuthGuard)
+  getProfile(@Request() req: any) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access
+    return req.user;
   }
 }
