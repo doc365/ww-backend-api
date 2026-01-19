@@ -1,49 +1,39 @@
-import {
-  Injectable,
-  UnauthorizedException,
-  ConflictException,
-} from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
-import { Prisma } from '@prisma/client';
-
+import * as bcrypt from 'bcrypt';
+import { ConflictException } from '@nestjs/common';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UserService,
-    private readonly jwtService: JwtService,
+    private userService: UserService,
+    private jwtService: JwtService,
   ) {}
 
   async register(email: string, password: string) {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const existingUser = await this.userService.findByEmail(email);
 
-    try {
-      return await this.userService.create({
-        email,
-        password: hashedPassword,
-      });
-    } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2002'
-      ) {
-        throw new ConflictException('Email already exists');
-      }
-      throw error;
+    if (existingUser) {
+      throw new ConflictException('Email already registered');
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await this.userService.create(email, hashedPassword);
+
+    const payload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    };
+
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
   }
 
   async login(email: string, password: string) {
     const user = await this.userService.findByEmail(email);
 
-    if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
@@ -54,7 +44,7 @@ export class AuthService {
     };
 
     return {
-      accessToken: this.jwtService.sign(payload),
+      access_token: this.jwtService.sign(payload),
     };
   }
 }

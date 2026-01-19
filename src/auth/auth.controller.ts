@@ -2,12 +2,7 @@ import { Body, Controller, Post, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { GetUser } from './decorators/get-user.decorator';
-
-// Define the JWT payload structure
-export interface JwtPayload {
-  userId: string;
-  email: string;
-}
+import type { JwtPayload } from './interfaces/jwt-payload.interface';
 
 @Controller('auth')
 export class AuthController {

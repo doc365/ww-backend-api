@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { JwtPayload } from '../auth.controller';
+import { JwtPayload } from '../interfaces/jwt-payload.interface';
 import { Request } from 'express';
 
 interface RequestWithUser extends Request {
