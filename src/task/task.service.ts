@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, ForbiddenException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ForbiddenException,
+} from '@nestjs/common';
 import { PrismaService } from '../database/prisma.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -26,7 +30,8 @@ export class TaskService {
   async findOne(userId: string, id: string) {
     const task = await this.prisma.task.findUnique({ where: { id } });
     if (!task) throw new NotFoundException('Task not found');
-    if (task.userId !== userId) throw new ForbiddenException('You do not have access to this task');
+    if (task.userId !== userId)
+      throw new ForbiddenException('You do not have access to this task');
     return task;
   }
 

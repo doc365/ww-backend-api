@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-argument */
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
@@ -7,7 +8,7 @@ import { PrismaService } from './../src/database/prisma.service';
 describe('Comprehensive QA Automation Flow (e2e)', () => {
   let app: INestApplication;
   let prisma: PrismaService;
-  
+
   // Storage for IDs to test relational flows
   let jwtToken: string;
   let projectId: string;
@@ -72,7 +73,10 @@ describe('Comprehensive QA Automation Flow (e2e)', () => {
       return request(app.getHttpServer())
         .post('/profile')
         .set('Authorization', `Bearer ${jwtToken}`)
-        .send({ bio: 'QA Automation Engineer', avatarUrl: 'https://example.com/avatar.jpg' })
+        .send({
+          bio: 'QA Automation Engineer',
+          avatarUrl: 'https://example.com/avatar.jpg',
+        })
         .expect(201)
         .expect((res) => {
           expect(res.body.bio).toBe('QA Automation Engineer');
@@ -95,8 +99,8 @@ describe('Comprehensive QA Automation Flow (e2e)', () => {
         .set('Authorization', `Bearer ${jwtToken}`)
         .send({ name: 'Alpha Release', description: 'Testing phase' })
         .expect(201)
-        .expect((res) => { 
-          projectId = res.body.id; 
+        .expect((res) => {
+          projectId = res.body.id;
         });
     });
 
@@ -106,8 +110,8 @@ describe('Comprehensive QA Automation Flow (e2e)', () => {
         .set('Authorization', `Bearer ${jwtToken}`)
         .send({ name: 'Bug', color: '#ff0000' })
         .expect(201)
-        .expect((res) => { 
-          categoryId = res.body.id; 
+        .expect((res) => {
+          categoryId = res.body.id;
         });
     });
   });
@@ -117,10 +121,14 @@ describe('Comprehensive QA Automation Flow (e2e)', () => {
       return request(app.getHttpServer())
         .post('/task')
         .set('Authorization', `Bearer ${jwtToken}`)
-        .send({ title: 'Fix login page', projectId: projectId, categoryId: categoryId })
+        .send({
+          title: 'Fix login page',
+          projectId: projectId,
+          categoryId: categoryId,
+        })
         .expect(201)
-        .expect((res) => { 
-          taskId = res.body.id; 
+        .expect((res) => {
+          taskId = res.body.id;
           expect(res.body.projectId).toBe(projectId);
         });
     });
@@ -144,8 +152,8 @@ describe('Comprehensive QA Automation Flow (e2e)', () => {
         .set('Authorization', `Bearer ${jwtToken}`)
         .send({ content: 'I found a bug here!', taskId: taskId })
         .expect(201)
-        .expect((res) => { 
-          commentId = res.body.id; 
+        .expect((res) => {
+          commentId = res.body.id;
         });
     });
 
@@ -188,7 +196,7 @@ describe('Comprehensive QA Automation Flow (e2e)', () => {
         .set('Authorization', `Bearer ${jwtToken}`)
         .expect(200);
     });
-    
+
     it('/profile/:id (DELETE) - Delete Profile', () => {
       return request(app.getHttpServer())
         .delete(`/profile/${profileId}`)
