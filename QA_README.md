@@ -1,4 +1,4 @@
-# QA Testing Portfolio: WW Backend API
+# QA Testing Portfolio: PERN Stack Task Management System
 
 This document serves as a portfolio piece demonstrating my QA Testing and API Automation skills. This project is a modular backend system built with **NestJS, PostgreSQL, Prisma ORM, and JWT Authentication**. 
 

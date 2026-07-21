@@ -16,7 +16,7 @@ describe('AppController', () => {
     it('should return service health status', () => {
       expect(appController.health()).toEqual({
         status: 'ok',
-        service: 'ww-backend-api',
+        service: 'pern-stack-task-management-system',
       });
     });
   });

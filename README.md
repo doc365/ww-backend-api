@@ -1,4 +1,4 @@
-# WW Backend API - QA Automation Portfolio 🚀
+# PERN Stack Task Management System - QA Automation Portfolio 🚀
 
 ![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
@@ -6,7 +6,7 @@
 ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
-Welcome to the **WW Backend API** repository. This project is a fully functional, highly secure Task Management API built to demonstrate advanced **QA Testing**, **API Automation**, and **Backend Architecture**.
+Welcome to the **PERN Stack Task Management System** repository. This project is a fully functional, highly secure Task Management API built to demonstrate advanced **QA Testing**, **API Automation**, and **Backend Architecture**.
 
 This project serves as a technical portfolio piece for QA Tester / SDET roles.
 
@@ -40,7 +40,7 @@ The API features a fully normalized relational database schema with cascading de
 ### 1. Database Setup
 Ensure you have PostgreSQL running. Set your database URL in a `.env` file:
 \`\`\`env
-DATABASE_URL="postgresql://username:password@localhost:5432/ww_db?schema=public"
+DATABASE_URL="postgresql://username:password@localhost:5432/task_management_db?schema=public"
 JWT_SECRET="your_secret_key"
 \`\`\`
 

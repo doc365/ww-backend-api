@@ -14,7 +14,7 @@ export class AppController {
   health() {
     return {
       status: 'ok',
-      service: 'ww-backend-api',
+      service: 'pern-stack-task-management-system',
       timestamp: new Date().toISOString(),
     };
   }

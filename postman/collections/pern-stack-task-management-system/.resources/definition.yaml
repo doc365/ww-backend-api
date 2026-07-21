@@ -1,5 +1,5 @@
 $kind: collection
-name: ww-backend-api
+name: pern-stack-task-management-system
 variables:
   - key: baseUrl
     value: 'http://localhost:3000'
