@@ -1,0 +1,14 @@
+$kind: http-request
+name: Get User by ID
+method: GET
+url: '{{baseUrl}}/user/:id'
+order: 3000
+description: Requires ADMIN or MODERATOR role
+pathVariables:
+  - key: id
+    value: '{{userId}}'
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{authToken}}'

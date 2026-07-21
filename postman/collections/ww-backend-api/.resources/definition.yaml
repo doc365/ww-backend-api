@@ -1,0 +1,16 @@
+$kind: collection
+name: ww-backend-api
+variables:
+  - key: baseUrl
+    value: 'http://localhost:3000'
+  - key: authToken
+    value: ''
+  - key: userId
+    value: ''
+  - key: taskId
+    value: ''
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{authToken}}'

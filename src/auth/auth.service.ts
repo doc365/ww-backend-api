@@ -19,14 +19,14 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await this.userService.create(email, hashedPassword);
 
-    const payload = {
-      sub: user.id,
-      email: user.email,
-      role: user.role,
-    };
-
     return {
-      access_token: this.jwtService.sign(payload),
+      message: 'Account created successfully',
+      user: {
+        id: user.id,
+        email: user.email,
+        role: user.role,
+        createdAt: user.createdAt,
+      },
     };
   }
 

@@ -1,0 +1,13 @@
+$kind: http-request
+name: Get Task by ID
+method: GET
+url: '{{baseUrl}}/task/:id'
+order: 3000
+pathVariables:
+  - key: id
+    value: '{{taskId}}'
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{authToken}}'

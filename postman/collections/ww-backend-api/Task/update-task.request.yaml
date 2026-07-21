@@ -1,0 +1,24 @@
+$kind: http-request
+name: Update Task
+method: PATCH
+url: '{{baseUrl}}/task/:id'
+order: 4000
+pathVariables:
+  - key: id
+    value: '{{taskId}}'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Updated Task",
+      "description": "Updated description",
+      "isCompleted": true
+    }
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{authToken}}'

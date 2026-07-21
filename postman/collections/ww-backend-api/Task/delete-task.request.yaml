@@ -1,0 +1,13 @@
+$kind: http-request
+name: Delete Task
+method: DELETE
+url: '{{baseUrl}}/task/:id'
+order: 5000
+pathVariables:
+  - key: id
+    value: '{{taskId}}'
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{authToken}}'

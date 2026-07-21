@@ -1,0 +1,14 @@
+$kind: http-request
+name: Delete User
+method: DELETE
+url: '{{baseUrl}}/user/:id'
+order: 4000
+description: Requires ADMIN role
+pathVariables:
+  - key: id
+    value: '{{userId}}'
+auth:
+  type: bearer
+  credentials:
+    - key: token
+      value: '{{authToken}}'
