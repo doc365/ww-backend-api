@@ -18,4 +18,5 @@ async function bootstrap() {
   console.log(`Application is running on port ${port}`);
   console.log(`Swagger Docs available at http://localhost:${port}/api/docs`);
 }
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 bootstrap();
