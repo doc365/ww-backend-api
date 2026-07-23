@@ -19,7 +19,14 @@ export default tseslint.config(
       },
       sourceType: 'commonjs',
       parserOptions: {
-        projectService: true,
+        projectService: {
+          allowDefaultProject: [
+            'cypress.config.ts',
+            'playwright.config.ts',
+            'cypress/e2e/*.ts',
+            'test-playwright/*.ts'
+          ],
+        },
         tsconfigRootDir: import.meta.dirname,
       },
     },

@@ -18,6 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:playwright": "playwright test",
+    "test:cypress": "cypress run",
     "prepare": "husky"
   },
   "dependencies": {
@@ -47,11 +49,13 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
+    "@playwright/test": "^1.61.1",
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
+    "cypress": "^15.19.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
