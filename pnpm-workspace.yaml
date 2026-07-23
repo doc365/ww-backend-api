@@ -3,6 +3,6 @@ allowBuilds:
   '@prisma/engines': true
   '@scarf/scarf': true
   bcrypt: true
-  cypress: set this to true or false
+  cypress: true
   prisma: true
   unrs-resolver: true
