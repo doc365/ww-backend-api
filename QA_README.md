@@ -6,6 +6,13 @@ My role in this project was to act as the primary **QA Engineer (SDET)** to ensu
 
 ---
 
+## 📂 Live Testing Artifacts & Traceability
+To build immediate transparency and trust, this repository contains real, production-ready QA artifacts:
+*   📄 **[Traceable Test Case Sheet (Markdown)](TEST_CASES.md):** Structured like a QA test plan spreadsheet, tracking preconditions, execution steps, expected outcomes, and current status.
+*   📬 **[Runnable Postman Collection (JSON)](PERN_Stack_Task_Management_System.postman_collection.json):** Exported collection for local API debugging, containing pre-configured environments and token extraction tests.
+
+---
+
 ## 🎯 Test Strategy & Scope
 The testing scope for this project focused heavily on Backend API validation, Security (RBAC), and Database integrity. 
 *   **Test Types Executed:** Functional Testing, API Automation, Security (Auth) Testing, Regression Testing.

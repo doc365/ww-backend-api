@@ -8,3 +8,28 @@ auth:
   credentials:
     - key: token
       value: '{{authToken}}'
+events:
+  - listen: test
+    script: |-
+      const jsonData = pm.response.json();
+
+      pm.test("Status code is 200", function () {
+        pm.response.to.have.status(200);
+      });
+
+      pm.test("Response contains email field", function () {
+        pm.expect(jsonData).to.have.property("email");
+      });
+
+      pm.test("Email is a valid format", function () {
+        pm.expect(jsonData.email).to.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+      });
+
+      pm.test("Email matches authenticated user", function () {
+        const expectedEmail = pm.environment.get("userEmail");
+        if (expectedEmail) {
+          pm.expect(jsonData.email).to.eql(expectedEmail);
+        } else {
+          pm.expect(jsonData.email).to.be.a("string").and.not.empty;
+        }
+      });
